@@ -12,6 +12,7 @@ type TDataItemRaw = {
 }
 
 const updateRules = async () => {
+    console.log("update rules...")
     const dataList: TDataItemRaw[] = (await chrome.storage.local.get(dataKey))[dataKey] || []
     const addRules = dataList.reduce((rules, {enabled, data}, index) => {
         if (enabled && data) {

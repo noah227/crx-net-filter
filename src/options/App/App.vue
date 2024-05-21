@@ -49,6 +49,7 @@ import {computed, onMounted, ref, shallowRef} from "vue";
 import Editor from "./Editor.vue"
 import TestModal from "./Modal.Test.vue"
 import {dataKey, TDataItem, TDataItemRaw} from "@/options/App/App";
+
 const uuid = require("uuid")
 
 const refEditor = shallowRef()
@@ -57,6 +58,10 @@ const currentIndex = ref(-1)
 const currentItem = computed<TDataItem | null>(() => currentIndex.value >= 0 ? dataList.value[currentIndex.value] : null)
 
 const dataList = ref<TDataItem[]>([])
+const dataMap = computed(() => dataList.value.reduce((data, item) => {
+    data[item.id] = item
+    return data
+}, {} as { [index: string]: TDataItem }))
 const renderDataList = computed(() => dataList.value.filter(item => !item.id.startsWith("NEW-")))
 
 const loadDataList = () => {
@@ -116,8 +121,43 @@ const showTestModal = ref(false)
 const testRule = () => {
     showTestModal.value = true
 }
-const ImportData = () => alert("暂未开放！")
-const exportData = () => alert("暂未开放！")
+const ImportData = () => {
+    const input = document.createElement("input")
+    input.type = "file"
+    input.accept = ".json"
+    input.click()
+    input.onchange = () => {
+        if (input.files?.length) {
+            const file = input.files[0]
+            const f = new FileReader()
+            f.onload = async (e) => {
+                const text = e.target?.result as string || "[]"
+                try {
+                    const data = JSON.parse(text) as TDataItem[]
+                    // 现在的处理逻辑是：如果导入和现有冲突，以现有数据为准
+                    data.forEach(item => {
+                        if (!dataMap.value[item.id]) {
+                            dataList.value.push(item)
+                        }
+                    })
+                    // 导入结束，以触发change判定和updateDynamicRules
+                    await saveDataList(true)
+                } catch (e) {
+                    alert("Import file parse failed!")
+                }
+            }
+            f.readAsText(file, "utf8")
+        }
+    }
+}
+const exportData = () => {
+    console.log("EXPORT DATA")
+    const url = window.URL.createObjectURL(new Blob([JSON.stringify(dataList.value, null, 4)]))
+    const a = document.createElement("a")
+    a.href = url
+    a.download = `crx-net-filter-${Date.now()}.json`
+    a.click()
+}
 onMounted(() => {
     console.log(chrome)
     loadDataList()
@@ -162,6 +202,7 @@ html, body {
         background-image: linear-gradient(90deg, pink, #FFC0CBa0, aqua, #00FFFF20);
         -webkit-background-clip: text;
     }
+
     > div:first-child {
         > span:last-child {
             button {

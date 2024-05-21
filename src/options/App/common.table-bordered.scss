@@ -1,0 +1,29 @@
+@import "common.variables";
+
+table {
+    border-collapse: collapse;
+
+    tr {
+        th {
+            cursor: unset;
+            user-select: none;
+            border-top: 1px solid;
+        }
+
+        th, td {
+            border-left: 1px solid;
+
+            &:last-child {
+                border-right: 1px solid $border-color;
+            }
+
+            border-bottom: 1px solid;
+            border-color: $border-color;
+        }
+
+        &:last-child > td {
+            border-bottom: 1px solid;
+            border-color: $border-color;
+        }
+    }
+}

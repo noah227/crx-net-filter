@@ -1,0 +1,13 @@
+[
+    {
+        "priority": 1,
+        "action": {
+            "type": ""
+        },
+        "condition": {
+            "urlFilter": "",
+            "initiatorDomains": [],
+            "resourceTypes": []
+        }
+    }
+]

@@ -1,0 +1,29 @@
+input {
+    border: 0;
+    padding: 3px 12px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #999 inset;
+    transition: all linear .08s;
+    outline: none;
+    height: 28px;
+}
+
+button {
+    border: 0;
+    padding: 3px 12px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #f0f0f0;
+    transition: all linear .08s;
+    height: 28px;
+
+    &:hover {
+        background-color: lightskyblue;
+        filter: opacity(.9);
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}

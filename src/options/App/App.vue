@@ -9,26 +9,28 @@
                 <button @click="exportData">Export</button>
             </span>
         </div>
-        <table>
-            <thead>
-            <tr>
-                <th>名称</th>
-                <th>创建时间</th>
-                <th>操作</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="(item, index) in renderDataList" :key="index">
-                <td>{{ item.title }}</td>
-                <td>{{ new Date(item.createdAt).toLocaleString() }}</td>
-                <td>
-                    <button @click="currentIndex=index">编辑</button>
-                    <button @click="switchStatus(item)">{{ item.enabled ? "禁用" : "启用" }}</button>
-                    <button class="danger" @click="removeItem(index)">删除</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div id="table-wrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>名称</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item, index) in renderDataList" :key="index">
+                    <td>{{ item.title }}</td>
+                    <td>{{ new Date(item.createdAt).toLocaleString() }}</td>
+                    <td>
+                        <button @click="currentIndex=index">编辑</button>
+                        <button @click="switchStatus(item)">{{ item.enabled ? "禁用" : "启用" }}</button>
+                        <button class="danger" @click="removeItem(index)">删除</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <div v-if="currentItem" id="editor-wrapper" @click.self="closeEditor">
             <div>
                 <div>
@@ -42,6 +44,9 @@
             </div>
         </div>
         <TestModal v-if="showTestModal" v-model="showTestModal"></TestModal>
+        <div>
+            Powered by <a href="https://www.npmjs.com/package/@vxt/cli" target="_blank">@vxt/cli</a>
+        </div>
     </div>
 </template>
 <script lang="ts" setup>
@@ -212,12 +217,28 @@ html, body {
     }
 
     > div:last-child {
-        flex-grow: 1;
+        padding: 12px 0;
+        text-align: right;
+        border-top: 1px solid #d0d0d0;
+        font-style: italic;
+
+        > a {
+            color: cornflowerblue;
+        }
     }
 }
 
+#table-wrapper {
+    flex-grow: 1;
+}
+
 table {
+    width: 100%;
     text-align: left;
+}
+
+th:first-child {
+    width: 220px;
 }
 
 th, td {

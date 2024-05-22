@@ -1,7 +1,10 @@
 <template>
     <div id="options">
         <div>
-            <strong id="title">测试</strong>
+            <div>
+                <img src="@/assets/logo.48x48.png" alt="">
+                <strong id="title">测试</strong>
+            </div>
             <span>
                 <button @click="addNew">Add</button>
                 <button @click="testRule">Test</button>
@@ -175,8 +178,8 @@ onMounted(() => {
 
 </script>
 <style lang="scss">
-@import "common.table-bordered";
-
+@import "common";
+@import "common.variables";
 html, body {
     width: 100%;
     height: 100%;
@@ -207,14 +210,23 @@ html, body {
     }
 
     #title {
-        font-size: 3rem;
+        font-size: 2.5rem;
         color: #0000;
         background-image: linear-gradient(90deg, pink, #FFC0CBa0, aqua, #00FFFF20);
         -webkit-background-clip: text;
+        box-sizing: border-box;
+        padding: 6px 12px;
     }
 
     > div:first-child {
+        > div:first-child{
+            height: 80%;
+            display: flex;
+            align-items: center;
+        }
         > span:last-child {
+            flex-grow: 1;
+            text-align: right;
             button {
                 margin-left: 12px;
             }
@@ -240,6 +252,7 @@ html, body {
 table {
     width: 100%;
     text-align: left;
+    border-collapse: collapse;
 }
 
 th:first-child {
@@ -248,6 +261,16 @@ th:first-child {
 
 th, td {
     padding: 12px;
+}
+
+thead > tr {
+    border-bottom: 1px solid #d0d0d0;
+}
+
+tbody {
+    tr:nth-child(even){
+        background-color: #f0f0f0;
+    }
 }
 
 td button {

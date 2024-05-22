@@ -9,6 +9,7 @@ type TDataItemBase = {
     id: string
     title: string
     createdAt: number
+    updatedAt: number
     enabled: boolean
 }
 export type TDataItemRaw = TDataItemBase & {

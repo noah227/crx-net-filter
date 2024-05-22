@@ -7,6 +7,7 @@ type TDataItemRaw = {
     id: string
     title: string
     createdAt: number
+    updatedAt: number
     data: TCustomizedRule[]
     enabled: boolean
 }

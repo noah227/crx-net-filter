@@ -15,6 +15,7 @@
                 <tr>
                     <th>名称</th>
                     <th>创建时间</th>
+                    <th>更新时间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -22,6 +23,7 @@
                 <tr v-for="(item, index) in renderDataList" :key="index">
                     <td>{{ item.title }}</td>
                     <td>{{ new Date(item.createdAt).toLocaleString() }}</td>
+                    <td>{{ new Date(item.updatedAt).toLocaleString() }}</td>
                     <td>
                         <button @click="currentIndex=index">编辑</button>
                         <button @click="switchStatus(item)">{{ item.enabled ? "禁用" : "启用" }}</button>
@@ -89,13 +91,15 @@ const addNew = () => {
         id: `NEW-${Date.now()}`,
         title: "新建",
         createdAt: Date.now(),
+        updatedAt: Date.now(),
         data: initialContent,
         enabled: true
     })
     currentIndex.value = dataList.value.length - 1
 }
 const saveCurrent = () => {
-    if (confirm("保存？")) {
+    if (currentItem.value && confirm("保存？")) {
+        currentItem.value.updatedAt = Date.now()
         saveDataList(true)
     }
 }
@@ -113,6 +117,7 @@ const saveDataList = (reloadData = false) => new Promise((resolve, reject) => {
 })
 const switchStatus = (item: TDataItem) => {
     item.enabled = !item.enabled
+    item.updatedAt = Date.now()
     saveDataList(true)
 }
 const removeItem = (index: number) => {

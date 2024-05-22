@@ -35,9 +35,9 @@
     },
     "default_locale": "zh_CN",
     "icons": {
-        "16": "assets/logo.16x16.png",
-        "32": "assets/logo.32x32.png",
-        "48": "assets/logo.48x48.png",
-        "128": "assets/logo.128x128.png"
+        "16": "assets/logo.png",
+        "32": "assets/logo.png",
+        "48": "assets/logo.png",
+        "128": "assets/logo.png"
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>this is popup page</div>
-        <img src="@/assets/logo.128x128.png" alt="">
+        <img src="@/assets/logo.png" alt="">
         <div>popup的输出在自己的世界里，对着popup的弹出右键可以审查元素。</div>
         <div>popup has it's isolated running world, right click to trigger context menu and inspect.</div>
     </div>

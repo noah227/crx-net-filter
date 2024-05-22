@@ -1,16 +1,5 @@
-const dataKey = "RULE-DATA-LIST"
-
-type Rule = any
-type TCustomizedRule = Omit<Rule, "id">
-
-type TDataItemRaw = {
-    id: string
-    title: string
-    createdAt: number
-    updatedAt: number
-    data: TCustomizedRule[]
-    enabled: boolean
-}
+import {dataKey, TDataItemRaw} from "@/options/App/App";
+import Rule = chrome.declarativeNetRequest.Rule;
 
 const updateRules = async () => {
     console.log("update rules...")

@@ -43,7 +43,7 @@ const updateRules = async () => {
     })
 }
 
-(() => {
+(async () => {
     // https://developer.chrome.com/docs/extensions/develop/concepts/service-workers
     // see also https://developer.chrome.google.cn/docs/extensions/develop/concepts/service-workers?hl=zh-cn (zh)
     // console.log("It's called background.js. And now it's called ServiceWorker")
@@ -53,7 +53,7 @@ const updateRules = async () => {
     chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(info => {
         console.log("NET DEBUG>>>", info)
     })
-    void updateRules()
+    await updateRules()
     chrome.storage.local.onChanged.addListener(() => {
         setTimeout(() => {
             void updateRules()

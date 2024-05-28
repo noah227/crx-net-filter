@@ -12,6 +12,7 @@
 		"core-js": "^3.8.3",
 		"monaco-editor": "^0.47.0",
 		"monaco-editor-webpack-plugin": "^7.1.0",
+		"raw-beautify": "^1.0.3",
 		"uuid": "^9.0.1",
 		"vue": "^3.2.13",
 		"vue-router": "^4.0.3",

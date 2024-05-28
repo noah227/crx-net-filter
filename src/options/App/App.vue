@@ -6,7 +6,7 @@
                 <strong id="title">测试</strong>
             </div>
             <span>
-                <button @click="addNew">Add</button>
+                <button class="primary" @click="addNew">Add</button>
                 <button @click="testRule">Test</button>
                 <button @click="ImportData">Import</button>
                 <button @click="exportData">Export</button>
@@ -28,7 +28,7 @@
                     <td>{{ new Date(item.createdAt).toLocaleString() }}</td>
                     <td>{{ new Date(item.updatedAt).toLocaleString() }}</td>
                     <td>
-                        <button @click="currentIndex=index">编辑</button>
+                        <button class="primary" @click="currentIndex=index">编辑</button>
                         <button @click="switchStatus(item)">{{ item.enabled ? "禁用" : "启用" }}</button>
                         <button class="danger" @click="removeItem(index)">删除</button>
                     </td>
@@ -41,8 +41,8 @@
                 <div>
                     <input type="text" v-model="currentItem.title">
                     <div>
-                        <button @click="saveCurrent">保存</button>
-                        <button @click="closeEditor">关闭</button>
+                        <button class="success" @click="saveCurrent">保存</button>
+                        <button class="danger" @click="closeEditor">关闭</button>
                     </div>
                 </div>
                 <Editor ref="refEditor" v-model="currentItem.data" language="json"></Editor>
@@ -275,16 +275,6 @@ tbody {
 
 td button {
     margin-right: 12px;
-
-    &:first-child {
-        color: #fff;
-        background-color: $color-primary;
-    }
-
-    &:last-child {
-        color: #fff;
-        background-color: $color-danger;
-    }
 }
 
 #editor-wrapper {
@@ -316,18 +306,6 @@ td button {
 
             > :first-child {
                 flex-grow: 1;
-            }
-
-            > div > button {
-                color: #fff;
-
-                &:first-child {
-                    background-color: $color-success;
-                }
-
-                &:last-child {
-                    background-color: $color-danger;
-                }
             }
         }
 

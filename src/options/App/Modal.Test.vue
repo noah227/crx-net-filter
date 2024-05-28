@@ -3,8 +3,8 @@
         <textarea v-model="content"></textarea>
         <div class="result"></div>
         <div class="buttons">
-            <button @click="testRule">测试</button>
-            <button @click="closeModal">关闭</button>
+            <button class="success" @click="testRule">测试</button>
+            <button class="danger" @click="closeModal">关闭</button>
         </div>
     </div>
 </template>

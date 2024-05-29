@@ -14,7 +14,9 @@
     },
     "permissions": [
         "contextMenus",
-        "storage"
+        "storage",
+        "declarativeNetRequest",
+        "declarativeNetRequestFeedback"
     ],
     "host_permissions": ["*://*/*"],
     "content_scripts": [
@@ -35,9 +37,9 @@
     },
     "default_locale": "zh_CN",
     "icons": {
-        "16": "assets/logo.png",
+        "16": "assets/logo.16x16.png",
         "32": "assets/logo.png",
-        "48": "assets/logo.png",
+        "48": "assets/logo.48x48.png",
         "128": "assets/logo.png"
     }
 }
